@@ -28,7 +28,7 @@ JSF CODE:
                      <tr>
 <td>Date Of Transaction</td>
 <td><h:inputText id="dot" value="#{ValidationForm.date}" required="true" >
-                 <f:convertDateTime pattern="MM/dd/yy" type="date" id="date" />
+                 <f:convertDateTime pattern="MM-dd-yyyy" type="date" id="date" />
     </h:inputText>
 
 </td>
