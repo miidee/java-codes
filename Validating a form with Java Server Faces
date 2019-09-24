@@ -1,0 +1,155 @@
+JSF CODE:
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title> Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+          
+            <table border="0" bgcolor="grey" bordercolor="blue" align="top" width="60%">
+                 <th align="center">
+                Transactions
+            </th>
+                <tr>
+<td>Transaction ID</td>
+<td><h:inputText id="tanis" 
+                 value="" 
+                 required="true" requiredMessage="ID is required"/></td>
+</tr>
+                
+                     <tr>
+<td>Account Name</td>
+<td><h:inputText id="Accnm" value="#{ValidationForm.transId}" required="true" requiredMessage="Account Name is required"/></td>
+</tr>
+                     <tr>
+<td>Date Of Transaction</td>
+<td><h:inputText id="dot" value="#{ValidationForm.date}" required="true" >
+                 <f:convertDateTime pattern="MM/dd/yy" type="date" id="date" />
+    </h:inputText>
+
+</td>
+</tr>
+                     <tr>
+<td>Account Email</td>
+<td><h:inputText id="email" value="#{ValidationForm.emaillD}" required="true" requiredMessage="email is required"/></td>
+</tr>`
+                     <tr>
+<td>Amount</td>
+<td><h:inputText id="amount" value="#{ValidationForm.amount}" required="true" requiredMessage="Amount is required">
+<f:convertNumber currencySymbol="$" type="currency"/>
+    </h:inputText>
+</td>
+</tr>
+            </table>
+            <h:commandButton id="submit-button" value="Submit" action="#{ValidationForm}" />  
+        </h:form>
+    </h:body>
+</html>
+
+
+
+
+
+Creating the Java Class
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package classwork;
+
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.inject.Named;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
+
+/**
+ *
+ * @author MiDE
+ */
+@Named(value = "ValidationForm")
+@ApplicationScoped
+@ManagedScoped
+@RequestScoped
+public class ValidationForm {
+
+    /**
+     * Creates a new instance of ValidationForm
+     */
+     private String TransId;
+    private String Name;
+    private Date Date;
+    private String EmailID;
+    private int Amount;
+    public ValidationForm() {
+    }
+    public String getTransId(){
+        return TransId;
+    }
+    
+    public void setTransId(String TransId){
+        this.TransId = TransId;
+    }
+    
+     public String getName(){
+        return Name;
+    }
+    
+    public void setName(String Name){
+        this.Name = Name;
+        
+    }
+    
+     public Date getDate(){
+        return Date;
+    }
+    
+    public void getDate(Date Date){
+        this.Date = Date;
+    }
+     public String getEmaillD(){
+        return EmailID;
+    }
+    
+    public void setEmailID(String EmailID){
+        this.EmailID = EmailID;
+    }
+    
+    public int getAmount(){
+        return Amount;
+    }
+    
+    public void setAmount(int Amount){
+        this.Amount=Amount;
+        
+    }
+    
+    public void ValidateEmail(FacesContext fc, UIComponent c,Object value)throws ValidatorException{
+        String Email= (String) value;
+        Pattern mask=null;
+        mask = Pattern.compile(".+@.+\\.[a-z]+");
+        Matcher matcher =mask.matcher(Email);
+        if(!matcher.matches())
+        {
+            FacesMessage message= new FacesMessage();
+            message.setDetail("Invalid email");
+            throw new ValidatorException(message);
+        }
+    }
+    
+  
+    
+}
+
+
