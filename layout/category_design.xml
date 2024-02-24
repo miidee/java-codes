@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#Fffdd0">
+
+        <TextView
+            android:id="@+id/category_label"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Food"
+            android:textSize="30dp"
+            android:paddingStart="20dp"
+            android:textColor="@color/black"
+            android:gravity="center_vertical">
+
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/category_icon"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/foodicon"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            >
+
+
+        </ImageView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
