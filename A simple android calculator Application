@@ -1,0 +1,199 @@
+HERE YOU WILL FIND THE XML LAYOUT FILE FOR THE APPLICATION:
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/c"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00610101"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="715dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="63dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:background="#701818"
+            android:baselineAligned="true"
+            android:paddingLeft="120dp"
+            android:paddingTop="20dp"
+            android:paddingRight="100dp"
+            android:text="Calculator"
+            android:textSize="36sp" />
+
+        <EditText
+            android:id="@+id/first_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Input First Number"
+            android:inputType="number"
+            android:paddingBottom="30dp"
+            android:textColor="#FF9800"
+            android:textColorLink="#4CAF50" />
+
+        <EditText
+            android:id="@+id/second_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Input Second number"
+            android:inputType="number"
+            android:textColor="#009688"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/Rslt"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:hint="Result"
+            android:textColor="#7D1515"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="69dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_mul"
+                android:layout_width="90dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="x" />
+
+            <Button
+                android:id="@+id/btn_div"
+                android:layout_width="90dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="/" />
+
+            <Button
+                android:id="@+id/btn_plus"
+                android:layout_width="90dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="+" />
+
+            <Button
+                android:id="@+id/btn_minus"
+                android:layout_width="90dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="-" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+BELOW YOU WILL FIND THE MAIN ACTIVITY .JAVA:
+
+
+package com.example.calculator;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText first_num, second_num;
+    Button btn_plus, btn_minus, Btn_div, btn_mul;
+    TextView Rslt;
+    float result, n1, n2;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        btn_plus = (Button) findViewById(R.id.btn_plus);
+        btn_mul = (Button) findViewById(R.id.btn_mul);
+        Btn_div = (Button) findViewById(R.id.btn_div);
+        btn_minus = (Button) findViewById(R.id.btn_minus);
+        first_num = (EditText) findViewById(R.id.first_num);
+        second_num = (EditText) findViewById(R.id.second_num);
+        Rslt = (TextView) findViewById(R.id.Rslt);
+
+
+        btn_mul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                n1 = Integer.parseInt(first_num.getText().toString());
+                n2 = Integer.parseInt(second_num.getText().toString());
+                result = n1 * n2;
+                Rslt.setText(String.valueOf(result));
+
+            }
+        });
+
+
+        btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                n1 = Integer.parseInt(first_num.getText().toString());
+                n2 = Integer.parseInt(second_num.getText().toString());
+                result = n1 + n2;
+                Rslt.setText(String.valueOf(result));
+
+            }
+        });
+
+
+        btn_minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                n1 = Integer.parseInt(first_num.getText().toString());
+                n2 = Integer.parseInt(second_num.getText().toString());
+                result = n1 - n2;
+                Rslt.setText(String.valueOf(result));
+
+            }
+        });
+
+
+        Btn_div.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                n1 = Integer.parseInt(first_num.getText().toString());
+                n2 = Integer.parseInt(second_num.getText().toString());
+                result = n1 / n2;
+                Rslt.setText(String.valueOf(result));
+
+            }
+        });
+    }
+}
+
+
+
+
+
